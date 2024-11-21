@@ -8,21 +8,21 @@ pause() {
 }
 
 IMAGES="$(dirname "$0")"/../../build/x86images
-OUT_ROOTFS_TAR="$IMAGES"/alpine-rootfs.tar
-OUT_ROOTFS_BIN="$IMAGES"/alpine-rootfs.bin
-OUT_ROOTFS_MNT="$IMAGES"/alpine-rootfs.mntpoint
-CONTAINER_NAME=alpine-full
-IMAGE_NAME=i386/alpine-full
+OUT_ROOTFS_TAR="$IMAGES"/ubuntu-bionic-rootfs.tar
+OUT_ROOTFS_BIN="$IMAGES"/ubuntu-bionic-rootfs.bin
+OUT_ROOTFS_MNT="$IMAGES"/ubuntu-bionic-rootfs.mntpoint
+CONTAINER_NAME=ubuntu-bionic-full
+IMAGE_NAME=i386/ubuntu:bionic-20220301
 
-rm -rf "$IMAGES/alpine-boot" || :
-rm -rf "$IMAGES/alpine-rootfs" || :
+rm -rf "$IMAGES/ubuntu-bionic-boot" || :
+rm -rf "$IMAGES/ubuntu-bionic-rootfs" || :
 rm -rf $OUT_ROOTFS_BIN || :
 cp ../xfrog.sh .
 cp ../xsetrandr.sh .
 cp -r ../anuramouse .
 cp ../anura-run .
-cd ../epoxy/server; RUSTFLAGS="-C target-feature=+crt-static" cargo +nightly b -F twisp -r --target i686-unknown-linux-gnu; cp ../target/i686-unknown-linux-gnu/release/epoxy-server ../../alpine/;
-cd ../../alpine;
+cd ../epoxy/server; RUSTFLAGS="-C target-feature=+crt-static" cargo +nightly b -F twisp -r --target i686-unknown-linux-gnu; cp ../target/i686-unknown-linux-gnu/release/epoxy-server ../../ubuntu-bionic/;
+cd ../../ubuntu-bionic;
 
 mkdir -p "$IMAGES"
 docker build . --platform linux/386 --rm --tag "$IMAGE_NAME"
@@ -43,7 +43,7 @@ sudo rm -f "$OUT_ROOTFS_MNT/.dockerenv"
 sudo cp resolv.conf "$OUT_ROOTFS_MNT/etc/resolv.conf"
 sudo cp hostname "$OUT_ROOTFS_MNT/etc/hostname"
 
-sudo cp -r "$OUT_ROOTFS_MNT/boot" "$IMAGES/alpine-boot"
+sudo cp -r "$OUT_ROOTFS_MNT/boot" "$IMAGES/ubuntu-bionic-boot"
 sudo umount "$loop"
 sudo losetup -d "$loop"
 rm "$OUT_ROOTFS_TAR"
@@ -55,9 +55,9 @@ rm epoxy-server
 rm -rf anuramouse
 
 echo "done! created"
-sudo chown -R $USER:$USER $IMAGES/alpine-boot
+sudo chown -R $USER:$USER $IMAGES/ubuntu-bionic-boot
 cd "$IMAGES"
-mkdir -p alpine-rootfs
-split -b50M alpine-rootfs.bin alpine-rootfs/
+mkdir -p ubuntu-bionic-rootfs
+split -b50M ubuntu-bionic-rootfs.bin ubuntu-bionic-rootfs/
 cd ../
-find x86images/alpine-rootfs/* | jq -Rnc "[inputs]"
+find x86images/ubuntu-bionic-rootfs/* | jq -Rnc "[inputs]"

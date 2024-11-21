@@ -139,6 +139,9 @@ rootfs-alpine: FORCE
 rootfs: FORCE
 	cd x86_image_wizard; sh x86_image_wizard.sh
 
+rootfs-ubuntu-bionic: FORCE
+	cd x86_image_wizard/ubuntu-bionic; sh build-ubuntu-bionic-bin.sh
+
 v86: libv86.js build/lib/v86.wasm
 	cp -r v86/bios public
 

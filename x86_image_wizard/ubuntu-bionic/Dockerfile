@@ -1,7 +1,8 @@
-FROM i386/alpine:edge
+FROM i386/ubuntu:bionic-20220301
 
-RUN apk add --update \
-        alpine-base alpine-conf openrc bash ncurses shadow curl \
+RUN apt update
+RUN apt install \
+        ubuntu-base ubuntu-conf openrc bash ncurses shadow curl \
         linux-virt linux-headers linux-firmware-none linux-firmware-sb16 \
         gcc make gcompat musl-dev libx11-dev xinit \
         curl bind-tools \

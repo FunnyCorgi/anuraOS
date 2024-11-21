@@ -13,15 +13,23 @@ build_alpine() {
     sh build-alpine-bin.sh
     cd ..
 }
+build_ubuntu_bionic(){
+    cd ubuntu-bionic
+    sh build-ubuntu-bionic-bin.sh
+}
 
 display_menu() {
     echo "Choose a rootfs image to build:"
     echo "1. Alpine"
+    echo "2. Ubuntu Bionic(18.04)"
     echo "0. Exit"
 }
 
 process_choice() {
     case "$1" in
+        2)
+            build_ubuntu_bionic
+            ;;
         1)
             build_alpine
             ;;
