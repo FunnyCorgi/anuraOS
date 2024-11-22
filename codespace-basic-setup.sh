@@ -2,8 +2,7 @@
 
 #fix the uuidgen command not found error
 sudo apt update
-sudo apt upgrade
-sudo apt install -y uuid-runtime gcc-multilib
+sudo apt-get install uuid-runtime gcc-multilib
 
 #install
 git submodule update --init
