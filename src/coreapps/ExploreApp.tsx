@@ -79,7 +79,9 @@ class ExploreApp extends App {
             & p img {
                 width: 1.05rem;
                 height: 1.05rem;
-                margin-top: 0.5rem;
+                top: 0.2rem;
+                position: relative;
+                margin-right: 0.2rem;
             }
 
             & span:has(img) {
@@ -140,15 +142,16 @@ class ExploreApp extends App {
             <h1>What's new in AnuraOS {anura.version.pretty}?</h1>
             <h2>Themes</h2>
             <p>
-                You can now completely customize how Anura looks! Just open the
+                You can now completely customize how Anura looks! Just open{" "}
                 <span>
                     <a href="javascript:anura.apps['anura.ui.themeeditor'].open();">
                         <img
-                            src="/assets/icons/theme.png"
-                            alt="Theme Editor Icon"
-                        />{" "}
-                        Theme Editor
+                            src="/assets/icons/wallpaper.png"
+                            alt="Wallpaper Selector Icon"
+                        />
+                        Wallpaper &amp; Style
                     </a>
+                    .
                 </span>
             </p>
             <h2>Support for more platforms</h2>
@@ -194,14 +197,13 @@ class ExploreApp extends App {
                 {$if(
                     anura.x86 === undefined,
                     <p>
-                        {" "}
                         It seems like you dont have the subsystem enabled. You
                         can install it from{" "}
                         <span>
                             <img
                                 src="/assets/icons/settings.png"
                                 alt="Settings icon"
-                            />{" "}
+                            />
                             <a href="javascript:anura.apps['anura.settings'].open();">
                                 Settings
                             </a>
@@ -217,7 +219,7 @@ class ExploreApp extends App {
                             <img
                                 src="/assets/icons/terminal.png"
                                 alt="v86 Terminal Icon"
-                            />{" "}
+                            />
                             <a href="javascript:anura.apps['anura.term'].open();">
                                 v86 Terminal
                             </a>
@@ -235,7 +237,7 @@ class ExploreApp extends App {
                 If you want to create a shortcut for an X11 app in the launcher,
                 you can do so from{" "}
                 <span>
-                    <img src="/assets/icons/settings.png" alt="Settings icon" />{" "}
+                    <img src="/assets/icons/settings.png" alt="Settings icon" />
                     <a href="javascript:anura.apps['anura.settings'].open();">
                         Settings
                     </a>
@@ -273,7 +275,7 @@ class ExploreApp extends App {
                     <img
                         src="/apps/marketplace.app/playstore.webp"
                         alt="Marketplace Icon"
-                    />{" "}
+                    />
                     <a href="javascript:anura.apps['anura.store'].open();">
                         Marketplace
                     </a>
@@ -283,24 +285,14 @@ class ExploreApp extends App {
             <h2>Customize your experience</h2>
             <p>
                 AnuraOS has robust customization features. You can change the
-                wallpaper using{" "}
+                wallpaper and system colors using{" "}
                 <span>
                     <a href="javascript:anura.apps['anura.wallpaper'].open();">
                         <img
                             src="/assets/icons/wallpaper.png"
                             alt="Wallpaper Selector Icon"
-                        />{" "}
-                        Wallpaper Selector
-                    </a>
-                </span>
-                , and change the system colors using{" "}
-                <span>
-                    <a href="javascript:anura.apps['anura.ui.themeeditor'].open();">
-                        <img
-                            src="/assets/icons/theme.png"
-                            alt="Theme Editor Icon"
-                        />{" "}
-                        Theme Editor
+                        />
+                        Wallpaper &amp; Style
                     </a>
                 </span>
                 .
