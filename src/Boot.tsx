@@ -483,8 +483,8 @@ document.addEventListener("anura-login-completed", async () => {
     const wallpaper = new WallpaperSelector();
     anura.registerApp(wallpaper);
 
-    const themeEditor = new ThemeEditor();
-    anura.registerApp(themeEditor);
+    // const themeEditor = new ThemeEditor();
+    // anura.registerApp(themeEditor);
 
     const explore = new ExploreApp();
     anura.registerApp(explore);
@@ -633,9 +633,23 @@ document.addEventListener("anura-login-completed", async () => {
         });
     }
 
+    const desktopCtx = new ContextMenu(true); // we are init'ing before anura so this is needed
+
+    desktopCtx.addItem(
+        "Set wallpaper & style",
+        () => {
+            // this however will execute after anura is init'ed
+            anura.apps["anura.wallpaper"].open();
+        },
+        "brush",
+    );
+
     document.addEventListener("contextmenu", function (e) {
         if (e.shiftKey) return;
         e.preventDefault();
+        if (e.target === document.body) {
+            desktopCtx.show(e.clientX, e.clientY);
+        }
     });
 
     document.addEventListener("keydown", (e) => {
