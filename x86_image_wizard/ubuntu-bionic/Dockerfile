@@ -1,7 +1,7 @@
 FROM i386/ubuntu:bionic-20220301
 
-RUN apt update
-RUN apt install \
+RUN apt-get update
+RUN apt-get install \
         ubuntu-base ubuntu-conf openrc bash ncurses shadow curl \
         linux-virt linux-headers linux-firmware-none linux-firmware-sb16 \
         gcc make gcompat musl-dev libx11-dev xinit \
